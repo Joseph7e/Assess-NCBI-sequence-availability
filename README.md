@@ -23,6 +23,8 @@ Download the "GENOME_REPORT.txt" file from NCBI.
 ### COX1 barcode of life
 
 
+#interesting papers
+https://pubmed.ncbi.nlm.nih.gov/31364707/
 
 
 
