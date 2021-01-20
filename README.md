@@ -7,8 +7,7 @@ A python script to automate this process is currently in development. It is curr
 Python3 v3.4.3+   
 modules: Biopython, argsparse
 
-# Required input files
- 
+# Usage 
 --phylogeny tree.newick
  
 This workflow currently requires a reference tree for the visualization of database coverage. The names of the leaves must exactly match those in the NCBI taxonomy database and must be limited to an individual scientific rank.
