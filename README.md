@@ -57,9 +57,8 @@ awk -F',' '{print $4, $NF}' metazoa_genomes_w_taxonomy.txt | sort | uniq | awk '
   
   
 ### COX1 barcode of life
- 
-  
-  
+ Data was obtained from the BOLD http://barcodinglife.org/index.php/datarelease (this database has 99% arthropods??)
+ http://barcodinglife.org/index.php/TaxBrowser_Home. Lists the phyla.  
   
 ### ribosomal rRNA - SILVA
 
