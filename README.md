@@ -30,7 +30,7 @@ tar xvzf *.tar.gz
 
 #Expand the taxonomic lineages into a simplified tsv lookup.
 python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
-
+cd ../
 ```
 
 
@@ -39,19 +39,25 @@ python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
 If NCBI updates the taxonomy database and not the sequence report files, some sequences may be overlooked (and vise versa). A 'taxids_failed.txt' file will be provided that showcase any missing data.
  
 ### Genome sequences
- Download the "GENOME_REPORT.txt" file from NCBI.
+```bash
+mkdir genome-report && cd genome-report
+wget https://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/assembly_summary_genbank.txt
 
-  
+# expand taxids to full taxonomy strings
+python3 ../Assess-NCBI-sequence-availability/assess-sequence-availability.py --input_list assembly_summary_genbank.txt --ncbi_taxonomy ../ncbi_taxonomy/expanded_ncbi_taxonomy.tsv --taxid_field 6
+
+# count the number of genomes/assembles for each phylum
+awk -F',' '{print $4, $NF}' metazoa_genomes_w_taxonomy.txt | sort | uniq | awk '{print $1}' | sort | uniq -c
+```
+ 
   
 ### Complete mitochondrial genomes
   
+  See https://github.com/Joseph7e/Target-Enrichment-of-Metazoan-Mitochondrial-DNA-with-Hybridization-Capture-Probes
   
   
 ### COX1 barcode of life
-  
-  
-#Interesting papers
-https://pubmed.ncbi.nlm.nih.gov/31364707/
+ 
   
   
   
@@ -59,7 +65,7 @@ https://pubmed.ncbi.nlm.nih.gov/31364707/
 
    SILVA provides comprehensive, quality checked and regularly updated datasets of aligned small (16S/18S, SSU) and large subunit (23S/28S, LSU) ribosomal RNA (rRNA) sequences for all three domains of life (Bacteria, Archaea and Eukarya). https://www.arb-silva.de/
   
-  Since we are focused on animals we start by downloadig the taxonomy reports for eukaryotes.
+  Since we are focused on animals we start by downloadig the taxonomy reports for eukaryotes. Note that the taxonomic strings are a mess. I am currently looking into a method to convert the strings to taxids and then to ncbi taxonomy. taxids in the silva database do not match ncbis taxids.
      
   ```bash
 mkdir silva138 && cd silva138
@@ -72,6 +78,7 @@ gunzip *.gz
 ## Header of file: primaryAccession,start,stop,organism_name,taxid
   ```
   
-
+#Interesting papers
+https://pubmed.ncbi.nlm.nih.gov/31364707/
 
 
