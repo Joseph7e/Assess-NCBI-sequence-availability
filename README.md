@@ -8,7 +8,11 @@ Python3 v3.4.3+
 modules: Biopython, argsparse
 
 # Usage 
---phylogeny tree.newick
+```
+# gather taxonomic strings from files with taxids (SILVA, NCBI etc.)
+python3 ../Assess-NCBI-sequence-availability/assess-sequence-availability.py --input_list eukaryotes.txt --ncbi_taxonomy ../ncbi_taxonomy/expanded_ncbi_taxonomy.tsv --taxid_field 2
+
+ ```
  
 This workflow currently requires a reference tree for the visualization of database coverage. The names of the leaves must exactly match those in the NCBI taxonomy database and must be limited to an individual scientific rank.
  
@@ -76,6 +80,11 @@ wget "https://www.arb-silva.de/fileadmin/silva_databases/release_138_1/Exports/t
 gunzip *.gz
 ## Header of file: primaryAccession,start,stop,organism_name,taxid
   ```
+  
+### RNAseq datasets
+  
+  Curently working on a approach to automate the search for RNAseq datasets using these files. ftp://ftp.ncbi.nlm.nih.gov/sra/reports/Metadata/.
+  If you have a method let me know.
   
 #Interesting papers
 https://pubmed.ncbi.nlm.nih.gov/31364707/
